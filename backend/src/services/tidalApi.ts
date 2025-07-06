@@ -128,6 +128,92 @@ class TidalApiService {
           ],
           miscellaneous: []
         }
+      },
+      {
+        id: 'mock-3',
+        title: 'For a Dancer',
+        artist: 'Jackson Browne',
+        album: 'Late for the Sky',
+        duration: 246,
+        releaseDate: '1974-09-01',
+        credits: {
+          songwriters: [
+            { name: 'Jackson Browne', role: 'Songwriter' }
+          ],
+          producers: [
+            { name: 'Al Schmitt', role: 'Producer' },
+            { name: 'Jackson Browne', role: 'Producer' }
+          ],
+          musicians: [
+            { name: 'Jackson Browne', role: 'Musician', instrument: 'Vocals, Piano, Guitar' },
+            { name: 'David Lindley', role: 'Musician', instrument: 'Slide Guitar, Fiddle' },
+            { name: 'Jai Winding', role: 'Musician', instrument: 'Piano, Organ' },
+            { name: 'Leland Sklar', role: 'Musician', instrument: 'Bass' },
+            { name: 'Russ Kunkel', role: 'Musician', instrument: 'Drums' }
+          ],
+          engineers: [
+            { name: 'Al Schmitt', role: 'Engineer' },
+            { name: 'Doug Sax', role: 'Mastering Engineer' }
+          ],
+          miscellaneous: []
+        }
+      },
+      {
+        id: 'mock-4',
+        title: 'Imagine',
+        artist: 'John Lennon',
+        album: 'Imagine',
+        duration: 183,
+        releaseDate: '1971-09-09',
+        credits: {
+          songwriters: [
+            { name: 'John Lennon', role: 'Songwriter' },
+            { name: 'Yoko Ono', role: 'Co-songwriter' }
+          ],
+          producers: [
+            { name: 'John Lennon', role: 'Producer' },
+            { name: 'Yoko Ono', role: 'Producer' },
+            { name: 'Phil Spector', role: 'Producer' }
+          ],
+          musicians: [
+            { name: 'John Lennon', role: 'Musician', instrument: 'Vocals, Piano' },
+            { name: 'Klaus Voormann', role: 'Musician', instrument: 'Bass' },
+            { name: 'Alan White', role: 'Musician', instrument: 'Drums' },
+            { name: 'The Flux Fiddlers', role: 'Musician', instrument: 'Strings' }
+          ],
+          engineers: [
+            { name: 'Phil McDonald', role: 'Engineer' },
+            { name: 'John Smith', role: 'Engineer' }
+          ],
+          miscellaneous: []
+        }
+      },
+      {
+        id: 'mock-5',
+        title: 'Stairway to Heaven',
+        artist: 'Led Zeppelin',
+        album: 'Led Zeppelin IV',
+        duration: 482,
+        releaseDate: '1971-11-08',
+        credits: {
+          songwriters: [
+            { name: 'Jimmy Page', role: 'Songwriter' },
+            { name: 'Robert Plant', role: 'Songwriter' }
+          ],
+          producers: [
+            { name: 'Jimmy Page', role: 'Producer' }
+          ],
+          musicians: [
+            { name: 'Robert Plant', role: 'Musician', instrument: 'Vocals' },
+            { name: 'Jimmy Page', role: 'Musician', instrument: 'Acoustic Guitar, Electric Guitar' },
+            { name: 'John Paul Jones', role: 'Musician', instrument: 'Bass, Recorders' },
+            { name: 'John Bonham', role: 'Musician', instrument: 'Drums' }
+          ],
+          engineers: [
+            { name: 'Andy Johns', role: 'Engineer' }
+          ],
+          miscellaneous: []
+        }
       }
     ];
 

@@ -1,6 +1,7 @@
 import express, { Request, Response } from 'express';
 import { tidalApi } from '../services/tidalApi';
 import { musicBrainzApi } from '../services/musicBrainzApi';
+import { discogsApi } from '../services/discogsApi';
 import { validateSearchQuery, validateSongId } from '../middleware/validation';
 import { optionalAuth, AuthenticatedRequest } from '../middleware/auth';
 import { searchLimiter } from '../middleware/rateLimiting';
@@ -19,23 +20,24 @@ router.get('/songs', optionalAuth, validateSearchQuery, async (req: Authenticate
       return res.status(400).json({ error: 'Search query is required' });
     }
 
-    // Search using TIDAL API (mock implementation)
-    const tidalResults = await tidalApi.searchSongs(q, parseInt(limit as string));
-    
-    // Also search MusicBrainz for additional metadata
-    const mbResults = await musicBrainzApi.searchRecordings(q, 10);
+    // Search using multiple APIs in parallel
+    const [tidalResults, discogsResults, mbResults] = await Promise.all([
+      tidalApi.searchSongs(q, parseInt(limit as string)),
+      discogsApi.searchReleases(q, 10), // Discogs for real credits data
+      musicBrainzApi.searchRecordings(q, 5) // Reduced MusicBrainz limit
+    ]);
 
     // Combine and format results
     const combinedResults = {
-      primary: tidalResults,
+      primary: [...tidalResults, ...discogsResults], // Mix TIDAL mock + Discogs real data
       supplementary: mbResults,
-      total: tidalResults.length + mbResults.length
+      total: tidalResults.length + discogsResults.length + mbResults.length
     };
 
     res.json({
       query: q,
       results: combinedResults,
-      source: 'tidal+musicbrainz'
+      source: 'tidal+discogs+musicbrainz'
     });
     
   } catch (error) {
