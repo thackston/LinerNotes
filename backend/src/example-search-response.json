@@ -1,0 +1,145 @@
+{
+  "results": [
+    {
+      "id": "mb-f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "title": "Come Together",
+      "artist": "The Beatles", 
+      "album": "Abbey Road",
+      "year": 1969,
+      "releaseDate": "1969-09-26",
+      "duration": 259,
+      "source": "musicbrainz",
+      "musicbrainzId": "f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "disambiguation": null,
+      "priorityScore": 2300,
+      "scoringReason": "Artist match, Official, Studio album",
+      "cached": false,
+      "credits": {
+        "songwriters": [],
+        "producers": [],
+        "musicians": [],
+        "engineers": [],
+        "miscellaneous": []
+      }
+    },
+    {
+      "id": "mb-f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "title": "Come Together",
+      "artist": "The Beatles",
+      "album": "Come Together / Something", 
+      "year": 1969,
+      "releaseDate": "1969-10-31",
+      "duration": 259,
+      "source": "musicbrainz",
+      "musicbrainzId": "f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "disambiguation": null,
+      "priorityScore": 2100,
+      "scoringReason": "Artist match, Official, Single",
+      "cached": false,
+      "credits": {
+        "songwriters": [],
+        "producers": [],
+        "musicians": [],
+        "engineers": [],
+        "miscellaneous": []
+      }
+    },
+    {
+      "id": "mb-f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "title": "Come Together",
+      "artist": "The Beatles",
+      "album": "The Beatles Greatest Hits",
+      "year": 1982,
+      "releaseDate": "1982-10-11", 
+      "duration": 259,
+      "source": "musicbrainz",
+      "musicbrainzId": "f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "disambiguation": null,
+      "priorityScore": 1900,
+      "scoringReason": "Artist match, Official, Studio album, Compilation (-400)",
+      "cached": false,
+      "credits": {
+        "songwriters": [],
+        "producers": [],
+        "musicians": [],
+        "engineers": [],
+        "miscellaneous": []
+      }
+    },
+    {
+      "id": "mb-f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "title": "Come Together",
+      "artist": "The Beatles",
+      "album": "Live at the BBC",
+      "year": 1994,
+      "releaseDate": "1994-11-30",
+      "duration": 280,
+      "source": "musicbrainz", 
+      "musicbrainzId": "f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "disambiguation": null,
+      "priorityScore": 1750,
+      "scoringReason": "Artist match, Official, Live album, Live penalty (-150)",
+      "cached": false,
+      "credits": {
+        "songwriters": [],
+        "producers": [],
+        "musicians": [],
+        "engineers": [],
+        "miscellaneous": []
+      }
+    },
+    {
+      "id": "mb-f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "title": "Come Together",
+      "artist": "The Beatles",
+      "album": "1962-1966",
+      "year": 1973,
+      "releaseDate": "1973-04-19",
+      "duration": 259,
+      "source": "musicbrainz",
+      "musicbrainzId": "f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed", 
+      "disambiguation": null,
+      "priorityScore": 1400,
+      "scoringReason": "Artist match, Official, Compilation album, Compilation penalty (-300)",
+      "cached": false,
+      "credits": {
+        "songwriters": [],
+        "producers": [],
+        "musicians": [],
+        "engineers": [],
+        "miscellaneous": []
+      }
+    },
+    {
+      "id": "mb-f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "title": "Come Together",
+      "artist": "The Beatles", 
+      "album": "Unreleased Sessions",
+      "year": 1969,
+      "releaseDate": "1969-08-01",
+      "duration": 245,
+      "source": "musicbrainz",
+      "musicbrainzId": "f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+      "disambiguation": null,
+      "priorityScore": 1500,
+      "scoringReason": "Artist match, Bootleg, Studio album",
+      "cached": false,
+      "credits": {
+        "songwriters": [],
+        "producers": [],
+        "musicians": [],
+        "engineers": [],
+        "miscellaneous": []
+      }
+    }
+  ],
+  "totalCount": 6,
+  "cached": false,
+  "searchTime": 1847,
+  "artistSearched": "The Beatles", 
+  "songSearched": "Come Together",
+  "cacheStats": {
+    "hit": false,
+    "ttl": 86400
+  }
+}

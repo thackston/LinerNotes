@@ -24,7 +24,6 @@ export const config = {
   },
 
   // API Keys
-  tidalApiKey: process.env.TIDAL_API_KEY || '',
   musicBrainzUserAgent: process.env.MUSICBRAINZ_USER_AGENT || 'LinerNotesApp/1.0.0',
   geniusApiKey: process.env.GENIUS_API_KEY || '',
   

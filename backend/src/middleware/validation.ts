@@ -13,11 +13,25 @@ export const handleValidationErrors = (req: Request, res: Response, next: NextFu
   next();
 };
 
-// Search validation rules
+// Search validation rules - updated to support both old and new formats
 export const validateSearchQuery = [
+  // Either 'q' OR 'song' must be provided
   query('q')
+    .optional()
     .isLength({ min: 1, max: 500 })
     .withMessage('Query must be between 1 and 500 characters')
+    .trim()
+    .escape(),
+  query('song')
+    .optional()
+    .isLength({ min: 1, max: 500 })
+    .withMessage('Song title must be between 1 and 500 characters')
+    .trim()
+    .escape(),
+  query('artist')
+    .optional()
+    .isLength({ min: 1, max: 200 })
+    .withMessage('Artist name must be between 1 and 200 characters')
     .trim()
     .escape(),
   query('limit')
@@ -25,6 +39,16 @@ export const validateSearchQuery = [
     .isInt({ min: 1, max: 100 })
     .withMessage('Limit must be between 1 and 100')
     .toInt(),
+  // Custom validation to ensure either 'q' or 'song' is provided
+  (req: Request, res: Response, next: NextFunction) => {
+    const { q, song } = req.query;
+    if (!q && !song) {
+      return res.status(400).json({
+        error: 'Either "q" or "song" parameter is required'
+      });
+    }
+    next();
+  },
   handleValidationErrors
 ];
 

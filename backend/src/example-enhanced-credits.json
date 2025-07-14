@@ -1,0 +1,77 @@
+{
+  "id": "mb-f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+  "title": "Come Together",
+  "artist": "The Beatles",
+  "album": "Abbey Road",
+  "year": 1969,
+  "releaseDate": "1969-09-26",
+  "duration": 259,
+  "source": "musicbrainz",
+  "musicbrainzId": "f10c15ba-8d5c-4d38-bb21-9652a8b5a8ed",
+  "disambiguation": null,
+  "priorityScore": 2300,
+  "scoringReason": "Artist match, Official, Studio album",
+  "cached": true,
+  "credits": {
+    "songwriters": [
+      {
+        "name": "John Lennon",
+        "role": "composer",
+        "attributes": "music"
+      },
+      {
+        "name": "Paul McCartney", 
+        "role": "composer",
+        "attributes": "music"
+      }
+    ],
+    "producers": [
+      {
+        "name": "George Martin",
+        "role": "producer",
+        "attributes": null
+      }
+    ],
+    "musicians": [
+      {
+        "name": "John Lennon",
+        "role": "performer", 
+        "instrument": "lead vocals, rhythm guitar"
+      },
+      {
+        "name": "Paul McCartney",
+        "role": "performer",
+        "instrument": "bass guitar, harmony vocals"
+      },
+      {
+        "name": "George Harrison", 
+        "role": "performer",
+        "instrument": "lead guitar"
+      },
+      {
+        "name": "Ringo Starr",
+        "role": "performer", 
+        "instrument": "drums"
+      }
+    ],
+    "engineers": [
+      {
+        "name": "Geoff Emerick",
+        "role": "recording engineer",
+        "attributes": null
+      },
+      {
+        "name": "Alan Parsons",
+        "role": "assistant engineer",
+        "attributes": null
+      }
+    ],
+    "miscellaneous": [
+      {
+        "name": "Yoko Ono",
+        "role": "other vocals",
+        "attributes": "additional vocals"
+      }
+    ]
+  }
+}

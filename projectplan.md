@@ -13,26 +13,30 @@ Building a web-based liner notes discovery app that helps music lovers find comp
 - ✅ **Phase 1:** Foundation & Setup (95% complete)
 - ✅ **Phase 2:** Core Infrastructure (85% complete)  
 - ✅ **Phase 3:** Search Implementation - Backend (100% complete)
-
-**Currently Working On:**
 - ✅ **Phase 3:** Search Implementation - Frontend UI Components (COMPLETED)
-- 🔄 **Phase 3:** Search Implementation - Advanced Features
+- ✅ **Phase 6:** Data Source Optimization - API Migration (COMPLETED)
+- ✅ **MusicBrainz Analysis:** Deep dive into data capabilities and constraints (COMPLETED)
+
+**🚀 MAJOR MIGRATION IN PROGRESS:**
+- 🔥 **PHASE 6.5:** Redis + Smart Prioritization Migration (Weeks 1-5)
 - 🔄 **Phase 2:** Authentication System (Auth0 integration)
 
 **Next Priorities:**
-1. Test complete search functionality end-to-end
-2. Add advanced search features (filters, history)
-3. Finish authentication system
-4. Add user features (favorites, search history persistence)
+1. **CRITICAL:** Complete Redis + Smart Prioritization Migration (9 phases, 23 tasks)
+2. Finish authentication system
+3. Contact MetaBrainz Foundation for commercial licensing quote
+4. Performance optimization and monitoring
+5. Launch preparation
 
 ---
 
 **Tech Stack:**
 - Frontend: React + TypeScript + Tailwind CSS
 - Backend: Node.js + Express + TypeScript
-- Database: PostgreSQL + Redis
+- Database: PostgreSQL + **Redis Smart Caching**
 - Auth: Auth0 or Firebase Auth
-- APIs: TIDAL Music (primary), MusicBrainz (secondary)
+- APIs: **Enhanced MusicBrainz (with intelligent prioritization)**, OneMusicAPI (premium aggregation), Apple Music (supplementary)
+- **NEW:** Smart ranking algorithms, advanced caching strategies, rate limit optimization
 
 ---
 
@@ -277,7 +281,295 @@ Building a web-based liner notes discovery app that helps music lovers find comp
 
 ---
 
-## 🚀 Phase 6: Security & Launch Prep (Week 11-12)
+## 🚀 Phase 6.5: REDIS + SMART PRIORITIZATION MIGRATION (Week 11-15)
+
+### 🎯 MIGRATION OVERVIEW
+Transforming LinerNotes from basic MusicBrainz API + PostgreSQL to **Enhanced MusicBrainz API + Redis Smart Caching** with intelligent local prioritization. This delivers sophisticated search ranking while maintaining cost efficiency and real-time data freshness.
+
+### 📋 **PHASE 1: Redis Infrastructure Setup (Week 1)**
+
+#### **Checkpoint 1.1: Redis Dependencies & Environment**
+- [ ] Install Redis and ioredis packages
+- [ ] Install Redis TypeScript types (@types/redis)
+- [ ] Add Redis to docker-compose.yml (if using Docker)
+- [ ] Add Redis environment variables to .env
+- [ ] Create redis.ts config file with connection settings
+- [ ] Update environment validation for Redis configs
+
+#### **Checkpoint 1.2: Redis Service Layer Implementation**
+- [ ] Create RedisService class in /services/cache/
+- [ ] Implement get/set/del methods with JSON serialization
+- [ ] Add cache key generation methods (search, album keys)
+- [ ] Implement TTL support and connection management
+- [ ] Test Redis connection and basic operations
+- [ ] Add error handling and retry logic
+
+### 📋 **PHASE 2: Smart Prioritization Algorithm (Week 1-2)**
+
+#### **Checkpoint 2.1: Priority Scoring System**
+- [ ] Create SmartRankingService class in /services/prioritization/
+- [ ] Implement calculatePriorityScore method
+- [ ] Add studio album recognition logic (Beatles albums list)
+- [ ] Create compilation detection algorithm
+- [ ] Add artist match bonus scoring (1000 points)
+- [ ] Implement album type scoring (Studio:900, Single:300, etc.)
+
+#### **Checkpoint 2.2: Result Sorting & Helpers**
+- [ ] Implement sortResults method with dual criteria
+- [ ] Add chronological sorting as secondary criteria
+- [ ] Create getEarliestYear helper method
+- [ ] Add recency penalty for old bootlegs/demos
+- [ ] Test priority scoring with Beatles sample data
+- [ ] Validate compilation vs studio album distinction
+
+### 📋 **PHASE 3: Enhanced MusicBrainz Service (Week 2)**
+
+#### **Checkpoint 3.1: Core Search Enhancement**
+- [ ] Create MusicBrainzEnhancedService class
+- [ ] Implement searchWithSmartPrioritization method
+- [ ] Add cache integration to search flow
+- [ ] Implement proper 1-second rate limiting
+- [ ] Add request queue system to prevent concurrent calls
+- [ ] Create searchMusicBrainz private method with filtering
+
+#### **Checkpoint 3.2: Credits Enrichment System**
+- [ ] Create enrichWithCredits method for top 10 results
+- [ ] Implement parseCredits for relationship data parsing
+- [ ] Add error handling for failed credit requests
+- [ ] Test credits parsing with various relationship types
+- [ ] Implement fallback for missing credits data
+- [ ] Add rate limit respect in credits enrichment
+
+#### **Checkpoint 3.3: Intelligent Caching Strategy**
+- [ ] Implement calculateCacheTTL method
+- [ ] Add popular artist detection (Beatles, Queen, etc.)
+- [ ] Create differentiated TTL (24h popular, 6h others)
+- [ ] Add cache warming for popular searches
+- [ ] Test cache hit/miss scenarios
+- [ ] Implement cache invalidation strategies
+
+### 📋 **PHASE 4: Backend Service Integration (Week 2-3)**
+
+#### **Checkpoint 4.1: Search Controller Modernization**
+- [ ] Replace basic MusicBrainz calls with enhanced service
+- [ ] Update parseSearchQuery method (handle "artist - song")
+- [ ] Enhance transformToFrontendFormat method
+- [ ] Add cache status to API responses
+- [ ] Implement query parsing for different formats
+- [ ] Test backward compatibility with existing frontend
+
+#### **Checkpoint 4.2: API Response Enhancement**
+- [ ] Add priority score to response metadata
+- [ ] Include cache hit information in responses
+- [ ] Add search performance metrics
+- [ ] Test API endpoint with new enhanced service
+- [ ] Validate response format matches frontend expectations
+- [ ] Add debugging information for development
+
+### 📋 **PHASE 5: Frontend Integration (Week 3)**
+
+#### **Checkpoint 5.1: API Service Updates**
+- [ ] Update TypeScript interfaces for new response format
+- [ ] Add priority score handling in API service
+- [ ] Update error handling for new API responses
+- [ ] Test frontend API service with backend changes
+- [ ] Ensure backward compatibility during transition
+- [ ] Add cache status display capabilities
+
+#### **Checkpoint 5.2: UI Enhancements**
+- [ ] Add "Best Match" indicator for top results
+- [ ] Display priority scores (optional debug mode)
+- [ ] Enhance credits display formatting
+- [ ] Add loading states for cache vs API calls
+- [ ] Implement blue border for top search result
+- [ ] Add performance indicators in debug mode
+
+### 📋 **PHASE 6: Environment & Deployment Updates (Week 4)**
+
+#### **Checkpoint 6.1: Configuration Management**
+- [ ] Add all Redis environment variables
+- [ ] Update MusicBrainz configuration
+- [ ] Add cache configuration options
+- [ ] Update documentation for new env vars
+- [ ] Create .env.example updates
+- [ ] Validate all environment configurations
+
+#### **Checkpoint 6.2: Docker & Deployment Setup**
+- [ ] Add Redis service to docker-compose
+- [ ] Update Dockerfile with new dependencies
+- [ ] Test local development setup with Redis
+- [ ] Update production deployment configuration
+- [ ] Create Redis volume persistence
+- [ ] Test Redis connectivity in containerized environment
+
+### 📋 **PHASE 7: Testing & Validation (Week 4)**
+
+#### **Checkpoint 7.1: Unit Testing Suite**
+- [ ] Test RedisService operations (get/set/del)
+- [ ] Test SmartRankingService scoring algorithms
+- [ ] Test MusicBrainzEnhancedService search methods
+- [ ] Test cache hit/miss scenarios
+- [ ] Test rate limiting compliance
+- [ ] Test error handling and fallbacks
+
+#### **Checkpoint 7.2: Integration Testing**
+- [ ] Test complete search flow end-to-end
+- [ ] Test prioritization with real Beatles queries
+- [ ] Test cache performance benchmarks
+- [ ] Test error handling and graceful degradation
+- [ ] Validate search quality vs old implementation
+- [ ] Test concurrent user scenarios
+
+#### **Checkpoint 7.3: Performance Validation**
+- [ ] Measure cache hit rates (target >80%)
+- [ ] Benchmark search response times (<100ms cached, <2s uncached)
+- [ ] Test with popular artist searches
+- [ ] Validate memory usage with Redis
+- [ ] Monitor MusicBrainz API usage patterns
+- [ ] Test system under load
+
+### 📋 **PHASE 8: Production Readiness (Week 4)**
+
+#### **Checkpoint 8.1: Monitoring & Observability**
+- [ ] Add Redis connection monitoring
+- [ ] Log cache hit/miss rates
+- [ ] Monitor MusicBrainz API usage and rate compliance
+- [ ] Set up performance alerts and thresholds
+- [ ] Add search quality metrics
+- [ ] Create operational dashboards
+
+#### **Checkpoint 8.2: Documentation & Rollback**
+- [ ] Update API documentation with new features
+- [ ] Document new environment setup procedures
+- [ ] Create rollback procedures and feature flags
+- [ ] Update deployment runbooks
+- [ ] Document troubleshooting procedures
+- [ ] Create migration rollback scripts
+
+### 📋 **PHASE 9: Launch & Optimization (Week 5)**
+
+#### **Checkpoint 9.1: Gradual Rollout Strategy**
+- [ ] Deploy to staging environment
+- [ ] Test with real user scenarios
+- [ ] A/B test with subset of users (50%)
+- [ ] Monitor performance metrics in production
+- [ ] Collect user feedback on search quality
+- [ ] Validate cost reduction vs old approach
+
+#### **Checkpoint 9.2: Final Optimization**
+- [ ] Tune cache TTL based on usage patterns
+- [ ] Optimize popular search pre-warming
+- [ ] Fine-tune priority scoring weights
+- [ ] Analyze and improve search relevance
+- [ ] Document lessons learned
+- [ ] Plan next iteration improvements
+
+---
+
+## 📊 Phase 6: Data Source Optimization (Week 11) - LEGACY
+
+### API Strategy Implementation
+- [ ] Audit current Discogs API usage and data dependencies
+- [ ] Research and obtain MusicBrainz commercial licensing
+- [ ] Remove mock TIDAL API service and clean up unused code
+- [ ] Implement enhanced MusicBrainz integration to cover Discogs use cases
+- [ ] Research OneMusicAPI integration for aggregated data
+- [ ] Plan Discogs API phase-out timeline (commercial restrictions)
+- [ ] Document data source migration strategy
+- [ ] Test data quality across different sources
+
+### Commercial Viability Assessment
+- [ ] Calculate costs for MusicBrainz commercial license
+- [ ] Evaluate OneMusicAPI pricing tiers (£50-1000/month)
+- [ ] Assess Apple Music API integration cost/benefit (\$99/year)
+- [ ] Create cost projections for different user scale scenarios
+- [ ] Document licensing requirements for each data source
+- [ ] Plan budget allocation for API costs
+- [ ] Create fallback strategies for API limitations
+- [ ] Research alternative data sources as backup options
+
+### Data Quality & Coverage
+- [ ] Compare credits completeness across sources
+- [ ] Implement data source attribution in UI
+- [ ] Create data confidence scoring system
+- [ ] Add source-specific caching strategies
+- [ ] Implement graceful degradation for API failures
+- [ ] Test edge cases with limited data sources
+- [ ] Create data quality monitoring dashboard
+- [ ] Plan data enrichment strategies
+
+---
+
+## 📊 MusicBrainz Deep Dive Analysis & Strategy
+
+### Data Availability Assessment ✅ COMPLETED
+
+**Rich Credits Data Available:**
+- **Musicians**: Specific instrument credits, performance roles, guest/solo/additional performers
+- **Producers**: Producer, co-producer, executive producer, associate producer roles  
+- **Engineers**: Audio, sound, recording, mixing, mastering, balance, programming engineers
+- **Additional Roles**: Arrangers, video directors, choreographers, sound effects, legal representation
+- **Release Info**: Label, release year, catalog numbers, formats, countries
+
+**Data Structure:**
+- **Recording Level**: Performer, instrument, vocal credits
+- **Work Level**: Composer, lyricist, arrangement credits
+- **Release Level**: Label, year, format, country data
+- **Comprehensive Relationships**: 40+ relationship types covering all liner note credits
+
+### Rate Limits Analysis ✅ COMPLETED
+
+**Critical Rate Limiting Constraints:**
+- **Standard Limit**: 1 request per second for most users
+- **Enhanced Limits**: 50 requests/second for specific approved applications
+- **Global Capacity**: 300 requests/second total server capacity
+- **Enforcement**: 100% request blocking if rate exceeded (not throttling)
+- **IP Blocking**: Possible permanent IP blocks for violations
+
+**Impact on Our Implementation:**
+- Current approach (1 search + multiple detail calls) violates limits
+- Need aggressive caching and request batching
+- Must implement "load more credits" on-demand approach
+
+### Commercial Licensing Information ✅ COMPLETED
+
+**Licensing Structure:**
+- **Core Data**: CC0 (Public Domain) - Free for any use
+- **Extended Data**: Creative Commons Attribution-NonCommercial-ShareAlike 3.0
+- **Commercial Use**: Requires paid licensing from MetaBrainz Foundation
+
+**Cost Information:**
+- **Pricing**: Not publicly available (contact required)
+- **Tiers**: Non-profit, commercial, stealth startup options
+- **Historical Context**: $32k earned in 2007 (40% of foundation income)
+- **Contact**: Direct negotiation with MetaBrainz Foundation required
+
+### Implementation Strategy Recommendations
+
+**Phase 1: Optimize Current Integration**
+- [ ] Implement proper 1-second rate limiting with retry logic
+- [ ] Add intelligent caching (24-hour+ for static data)
+- [ ] Use single API call with basic relationship data
+- [ ] Add "Load Full Credits" button for work relationship lookup
+- [ ] Implement request queue with proper spacing
+
+**Phase 2: Enhanced Data Coverage**
+- [ ] Expand relationship parsing to capture all 40+ credit types
+- [ ] Add label, release year, format data from release relationships
+- [ ] Implement instrument-specific credits display
+- [ ] Add engineering credit subcategories (mixing, mastering, etc.)
+- [ ] Create comprehensive credits categorization system
+
+**Phase 3: Commercial Planning**
+- [ ] Contact MetaBrainz Foundation for commercial license quote
+- [ ] Compare costs with OneMusicAPI (£50-1000/month)
+- [ ] Plan budget allocation for production scaling
+- [ ] Evaluate cost vs. data quality trade-offs
+- [ ] Create pricing strategy for different user tiers
+
+---
+
+## 🚀 Phase 7: Security & Launch Prep (Week 12-13)
 
 ### Security Implementation
 - [ ] Implement rate limiting on all endpoints
@@ -323,7 +615,7 @@ Building a web-based liner notes discovery app that helps music lovers find comp
 
 ## 📊 Success Metrics & Monitoring
 
-### Week 13+: Post-Launch
+### Week 14+: Post-Launch
 - [ ] Monitor error rates
 - [ ] Track user signups
 - [ ] Analyze search patterns
@@ -347,18 +639,52 @@ Building a web-based liner notes discovery app that helps music lovers find comp
 
 ## 📝 Notes
 
-- Start with TIDAL API only, add MusicBrainz in Phase 2
+### 🚀 REDIS MIGRATION STRATEGY
+- **Architecture Change**: From "Frontend → Backend → Basic MusicBrainz → PostgreSQL" to "Frontend → Backend → Redis Cache → Enhanced MusicBrainz + Smart Prioritization"
+- **Key Innovation**: Original studio albums prioritized over "Greatest Hits" compilations
+- **Performance Target**: >80% cache hit rate, <100ms cached responses, <2s uncached
+- **Smart Caching**: 24h TTL for popular artists (Beatles, Queen), 6h for others
+
+### 🎯 MUSICBRAINZ OPTIMIZATION
+- **MusicBrainz Primary Strategy**: Most comprehensive credits data (40+ relationship types)
+- **Critical Rate Limit**: 1 request/second strict enforcement - must implement proper spacing
+- **Commercial License Required**: Contact MetaBrainz Foundation for production pricing
+- **Enhanced Integration**: Smart prioritization + intelligent caching + rate limit compliance
+- **Load-on-Demand**: Implement "Load Full Credits" to avoid multiple API calls
+
+### 💰 COST & BUSINESS MODEL
+- Phase out Discogs API due to commercial use restrictions
+- Consider OneMusicAPI for premium aggregated data coverage (£50-1000/month)
 - Focus on web-first, mobile app can come later
-- Keep premium features simple initially
-- Prioritize search quality over feature quantity
-- Use free tiers of all services initially
+- Plan for API costs in business model from day 1
+- Redis caching dramatically reduces API call volume and costs
 
 ---
 
 ## 🚨 Risk Mitigation
 
-- **API Limits**: Implement aggressive caching from day 1
-- **Data Quality**: Show confidence scores on credits
+### 🔥 CRITICAL MIGRATION RISKS
+- **Redis Dependency**: New single point of failure - implement fallback to direct API
+- **Migration Complexity**: 9 phases, 23 tasks - high coordination risk
+- **Cache Coherency**: Stale data risk - implement proper TTL and invalidation
+- **Performance Regression**: New system may be slower initially - thorough testing required
+- **Rollback Complexity**: Advanced system harder to rollback - feature flags essential
+
+### ⚡ EXISTING RISKS (STILL APPLY)
+- **MusicBrainz Rate Limits**: CRITICAL - 1 req/sec enforcement with IP blocking risk
+- **API Limits**: Implement aggressive caching from day 1, request queuing essential
+- **Commercial Licensing**: Obtain proper licenses before scale, budget for API costs
+- **Data Source Reliability**: Maintain multiple data sources, plan for API deprecation
+- **Discogs Restrictions**: Commercial use requires explicit permission, plan migration
+- **MusicBrainz Dependency**: Core data is free, but rate limits may constrain growth
+- **Data Quality**: Show confidence scores on credits and source attribution
 - **User Acquisition**: Focus on SEO and organic growth
 - **Technical Debt**: Refactor every 3 sprints
 - **Burnout**: Take breaks between phases
+
+### 🛡️ MIGRATION-SPECIFIC MITIGATIONS
+- **Feature Flags**: Ability to instantly switch back to old system
+- **Gradual Rollout**: 50% A/B testing before full deployment
+- **Monitoring**: Real-time performance and error rate monitoring
+- **Testing**: Comprehensive unit, integration, and performance testing
+- **Documentation**: Detailed rollback procedures and troubleshooting guides
