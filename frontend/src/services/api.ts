@@ -24,6 +24,12 @@ export interface Credits {
   musicians: Credit[];
   engineers: Credit[];
   miscellaneous: Credit[];
+  dataConfidence?: {
+    songwriters: 'high' | 'medium' | 'low' | 'unknown';
+    hasExplicitSongwriters: boolean;
+    hasWorkRelations: boolean;
+    source: string;
+  };
 }
 
 export interface Credit {
@@ -32,6 +38,7 @@ export interface Credit {
   attributes?: string;
   instrument?: string;
   workTitle?: string;
+  confidence?: 'high' | 'medium' | 'low';
 }
 
 export interface EnhancedSearchResponse {

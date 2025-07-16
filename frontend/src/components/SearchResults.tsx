@@ -187,21 +187,50 @@ const SongCard: React.FC<{ song: any }> = ({ song }) => {
         <p className="text-gray-600">{sanitizeText(song.artist || '').substring(0, 150)}</p>
         <p className="text-sm text-gray-500">{sanitizeText(song.album || '').substring(0, 150)} {song.releaseDate && `(${new Date(song.releaseDate).getFullYear()})`}</p>
         
-        {/* Prominent songwriter display - always use original songwriters */}
-        {originalSongwriters && originalSongwriters.length > 0 && (
+        {/* Songwriter display with confidence indicators */}
+        {originalSongwriters && originalSongwriters.length > 0 ? (
           <div className="mt-2">
             <div className="flex items-center gap-2">
               <span className="text-xs font-medium text-gray-600">✍️ Written by:</span>
               <div className="flex flex-wrap gap-1">
-                {originalSongwriters.slice(0, 3).map((credit: any, idx: number) => (
-                  <span key={idx} className="text-sm font-medium text-blue-700 bg-blue-50 px-2 py-1 rounded">
-                    {sanitizeText(credit.name || '').substring(0, 100)}
-                  </span>
-                ))}
+                {originalSongwriters.slice(0, 3).map((credit: any, idx: number) => {
+                  const isLowConfidence = credit.confidence === 'low' || credit.role?.includes('unavailable');
+                  return (
+                    <span 
+                      key={idx} 
+                      className={`text-sm font-medium px-2 py-1 rounded ${
+                        isLowConfidence 
+                          ? 'text-amber-700 bg-amber-50 border border-amber-200' 
+                          : 'text-blue-700 bg-blue-50'
+                      }`}
+                    >
+                      {sanitizeText(credit.name || '').substring(0, 100)}
+                      {isLowConfidence && <span className="ml-1 text-xs">⚠️</span>}
+                    </span>
+                  );
+                })}
                 {originalSongwriters.length > 3 && (
                   <span className="text-xs text-gray-500">+{originalSongwriters.length - 3} more</span>
                 )}
               </div>
+            </div>
+            {/* Data confidence indicator */}
+            {song.credits?.dataConfidence?.songwriters === 'low' && (
+              <div className="mt-1 text-xs text-amber-600">
+                ⚠️ Songwriter data unavailable - showing performer information
+              </div>
+            )}
+            {song.credits?.dataConfidence?.songwriters === 'unknown' && originalSongwriters.length === 0 && (
+              <div className="mt-1 text-xs text-gray-500">
+                ℹ️ Songwriter information not available in database
+              </div>
+            )}
+          </div>
+        ) : (
+          <div className="mt-2">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium text-gray-600">✍️ Written by:</span>
+              <span className="text-sm text-gray-500 italic">Songwriter information not available</span>
             </div>
           </div>
         )}
