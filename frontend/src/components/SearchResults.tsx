@@ -115,7 +115,17 @@ const SongCard: React.FC<{ song: any }> = ({ song }) => {
     }
   };
 
-  const displayCredits = fullCredits || song.credits;
+  // Always preserve original songwriter information for the "Written by" section
+  const originalSongwriters = song.credits?.songwriters || [];
+  
+  // For the detailed credits section, merge original and full credits
+  const displayCredits = fullCredits ? {
+    songwriters: fullCredits.songwriters && fullCredits.songwriters.length > 0 ? fullCredits.songwriters : originalSongwriters,
+    producers: fullCredits.producers || song.credits?.producers || [],
+    musicians: fullCredits.musicians || song.credits?.musicians || [],
+    engineers: fullCredits.engineers || song.credits?.engineers || [],
+    miscellaneous: fullCredits.miscellaneous || song.credits?.miscellaneous || []
+  } : song.credits;
   
   // Debug logging for songwriter information
   React.useEffect(() => {
@@ -177,19 +187,19 @@ const SongCard: React.FC<{ song: any }> = ({ song }) => {
         <p className="text-gray-600">{sanitizeText(song.artist || '').substring(0, 150)}</p>
         <p className="text-sm text-gray-500">{sanitizeText(song.album || '').substring(0, 150)} {song.releaseDate && `(${new Date(song.releaseDate).getFullYear()})`}</p>
         
-        {/* Prominent songwriter display */}
-        {displayCredits?.songwriters && displayCredits.songwriters.length > 0 && (
+        {/* Prominent songwriter display - always use original songwriters */}
+        {originalSongwriters && originalSongwriters.length > 0 && (
           <div className="mt-2">
             <div className="flex items-center gap-2">
               <span className="text-xs font-medium text-gray-600">✍️ Written by:</span>
               <div className="flex flex-wrap gap-1">
-                {displayCredits.songwriters.slice(0, 3).map((credit: any, idx: number) => (
+                {originalSongwriters.slice(0, 3).map((credit: any, idx: number) => (
                   <span key={idx} className="text-sm font-medium text-blue-700 bg-blue-50 px-2 py-1 rounded">
                     {sanitizeText(credit.name || '').substring(0, 100)}
                   </span>
                 ))}
-                {displayCredits.songwriters.length > 3 && (
-                  <span className="text-xs text-gray-500">+{displayCredits.songwriters.length - 3} more</span>
+                {originalSongwriters.length > 3 && (
+                  <span className="text-xs text-gray-500">+{originalSongwriters.length - 3} more</span>
                 )}
               </div>
             </div>
